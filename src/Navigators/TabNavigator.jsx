@@ -1,6 +1,6 @@
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
-import Constants from "expo-constants";
 
+import { ChatsScreen } from "../Screens/ChatsScreen";
 import { UnimplementedScreen } from "../Screens/UnimplementedScreen";
 
 import C_TEAL from "../colors";
@@ -28,7 +28,7 @@ export function TabNavigator() {
             }}
             initialRouteName="Chats"
         >   
-            <Tab.Screen component={UnimplementedScreen} name="Chats" />
+            <Tab.Screen component={ChatsScreen} name="Chats" />
             <Tab.Screen component={UnimplementedScreen} name="Status" />
             <Tab.Screen component={UnimplementedScreen} name="Calls" />
         </Tab.Navigator>
