@@ -1,8 +1,10 @@
+import { forwardRef } from "react";
+
 import { FlatList } from "react-native";
 
 import { Message } from "./Message";
 
-export function MessageList(props) {
+const MessageList = forwardRef((props, ref) => {
     const renderItem = ({item}) => {
         return(
             <Message
@@ -20,7 +22,9 @@ export function MessageList(props) {
             data={data}
             renderItem={renderItem}
             keyExtractor={(item, index) => index}
-            ref={listRef}
+            ref={ref}
         />
     );
-}
+});
+
+export { MessageList };

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 import { StyleSheet } from "react-native";
 
@@ -10,6 +10,8 @@ export function ChatScreen() {
     const [messages, setMessages] = useState([]);
     const [message, setMessage] = useState("");
 
+    const listRef = useRef(null);
+
     const onSend = () => {
         if (message.trim() === "") return;
 
@@ -20,13 +22,15 @@ export function ChatScreen() {
             sent: Math.floor((Math.random() * 2.0))
         })
 
-        setMessages(newMessages);
+        setMessages(messages => newMessages);
         setMessage("");
+
+        if (messages.length > 0) listRef.current.scrollToEnd();
     }
 
     return(
         <ChatBackground style={styles.rootContainer}>
-            <MessageList messages={messages} />
+            <MessageList messages={messages} ref={listRef} />
             <MessageInput
                 onChangeText={(text) => setMessage(text)}
                 onSend={onSend}
