@@ -9,10 +9,7 @@ import C_TEAL from "../colors";
 import { ProfileScreen } from "../Screens/ProfileScreen";
 import { UnimplementedScreen } from "../Screens/UnimplementedScreen";
 import { ChatScreen } from "../Screens/ChatScreen";
-
 import { ChatScreenTitle } from "../Components/ChatScreenTitle";
-
-
 
 const Stack = createNativeStackNavigator();
 

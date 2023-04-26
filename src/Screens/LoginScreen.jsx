@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import { 
         View, 
         StyleSheet, 
@@ -5,14 +7,12 @@ import {
         TouchableOpacity
     } from "react-native";
 
+import { useNavigation } from "@react-navigation/native";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import { Input } from '../Components/Input';
-import { useState } from "react";
 import { Button } from "../Components/Button";
 import { Header } from "../Components/Header";
-import { useNavigation } from "@react-navigation/native";
-
 
 export function LoginScreen(props) {
     const [email, setEmail] = useState('');

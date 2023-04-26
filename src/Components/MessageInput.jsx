@@ -1,10 +1,17 @@
-import { View, StyleSheet, TextInput, TouchableOpacity } from "react-native";
+import { 
+        View, 
+        StyleSheet, 
+        TextInput, 
+        TouchableOpacity 
+    } from "react-native";
 
-import { Fontisto } from '@expo/vector-icons';
-import { FontAwesome } from '@expo/vector-icons';
-import { Ionicons } from '@expo/vector-icons';
-import { MaterialIcons } from '@expo/vector-icons';
-
+import { 
+        Fontisto, 
+        FontAwesome, 
+        Ionicons, 
+        MaterialIcons 
+    } from '@expo/vector-icons';
+    
 export function MessageInput(props) {
     return(
         <View style={styles.rootContainer}>

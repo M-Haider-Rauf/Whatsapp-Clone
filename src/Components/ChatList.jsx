@@ -1,9 +1,10 @@
-import { StyleSheet } from "react-native";
-import { ChatListItem } from "./ChatListItem";
-import { FlatList } from "react-native";
+import { StyleSheet, FlatList } from "react-native";
+
 import { useNavigation } from "@react-navigation/native";
 
-export function ChatList(props) {
+import { ChatListItem } from "./ChatListItem";
+
+export function ChatList() {
     const navigation = useNavigation();
 
     const renderItem = ({item}) => {

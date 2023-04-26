@@ -2,7 +2,6 @@ import { Text, View, StyleSheet } from "react-native";
 
 import { Avatar } from "./Avatar";
 
-
 export function ChatScreenTitle(props) {
     const title = props.title;
 

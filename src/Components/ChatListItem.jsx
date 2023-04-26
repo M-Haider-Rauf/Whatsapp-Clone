@@ -1,4 +1,10 @@
-import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
+import { 
+        View, 
+        StyleSheet, 
+        Text, 
+        TouchableOpacity 
+    } from "react-native";
+    
 import { Avatar } from "./Avatar";
 
 export function ChatListItem(props) {

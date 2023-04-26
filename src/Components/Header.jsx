@@ -8,7 +8,6 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import C_TEAL from '../colors';
 
-
 export function Header(props) {
     return(
         <View style={styles.rootContainer}>

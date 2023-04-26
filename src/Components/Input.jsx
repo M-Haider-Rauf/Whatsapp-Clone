@@ -4,7 +4,6 @@ import {
         TextInput, 
         Text 
     } from "react-native";
-
     
 export function Input(props) {
     return (

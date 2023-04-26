@@ -5,7 +5,6 @@ import { UnimplementedScreen } from "../Screens/UnimplementedScreen";
 
 import C_TEAL from "../colors";
 
-
 const Tab = createMaterialTopTabNavigator();
 
 export function TabNavigator() {

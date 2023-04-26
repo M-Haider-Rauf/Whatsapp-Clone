@@ -23,7 +23,7 @@ export function ChatScreen() {
         })
 
         setMessages(messages => newMessages);
-        setMessage("");
+        setMessage(message => "");
 
         if (messages.length > 0) listRef.current.scrollToEnd();
     }
