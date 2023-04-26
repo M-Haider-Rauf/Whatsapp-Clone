@@ -1,18 +1,15 @@
+import { useState } from "react";
 import { 
     View, 
     StyleSheet, 
     Text,
     TouchableOpacity
 } from "react-native";
-
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-
 import { Input } from '../Components/Input';
-import { useState } from "react";
 import { Button } from "../Components/Button";
 import { Header } from "../Components/Header";
 import { useNavigation } from "@react-navigation/native";
-
 
 export function SignUpScreen(props) {
     const [name, setName] = useState('');

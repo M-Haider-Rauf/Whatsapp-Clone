@@ -4,10 +4,8 @@ export function Avatar(props) {
     const additionalStyles = {
         width: props.size,
         height: props.size,
+        tintColor: props.uri ?  undefined : "white"
     }
-
-    if (!props.uri) additionalStyles["tintColor"] = "white";
-
 
     return(
         <Image 

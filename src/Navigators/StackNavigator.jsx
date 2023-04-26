@@ -7,6 +7,11 @@ import { HeaderRight } from "../Components/HeaderRight";
 import { TabNavigator } from "./TabNavigator";
 import C_TEAL from "../colors";
 import { ProfileScreen } from "../Screens/ProfileScreen";
+import { UnimplementedScreen } from "../Screens/UnimplementedScreen";
+import { ChatScreen } from "../Screens/ChatScreen";
+
+import { ChatScreenTitle } from "../Components/ChatScreenTitle";
+
 
 
 const Stack = createNativeStackNavigator();
@@ -36,6 +41,18 @@ export function StackNavigator() {
                         component={TabNavigator} 
                         name="Home" 
                         options={options}
+                    />
+                    <Stack.Screen 
+                        component={ChatScreen}
+                        name="ChatScreen"
+                        options={{
+                            statusBarColor: C_TEAL,
+                            headerShown: true,
+                            headerBackground: () => <View style={{backgroundColor: C_TEAL, flex: 1}} />,
+                            headerTintColor: "white",
+                            title: "Haider",
+                            headerTitle: (props) => <ChatScreenTitle title={props.children} />
+                        }}
                     />
                     <Stack.Screen
                          component={ProfileScreen} 

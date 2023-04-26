@@ -3,7 +3,7 @@ import { Avatar } from "./Avatar";
 
 export function ChatListItem(props) {
     return(
-        <TouchableOpacity style={styles.rootContainer}>
+        <TouchableOpacity style={styles.rootContainer} onPress={props.onPress}>
             <View style={styles.avatarContainer}>
                 <Avatar size={50} source={props.photo} />
             </View>
@@ -42,6 +42,7 @@ const styles = StyleSheet.create({
         fontSize: 14
     },
     timeContainer: {
+        position: "relative",
         paddingVertical: 10,
         paddingRight: 10,
         justifyContent: "flex-start",

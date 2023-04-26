@@ -7,12 +7,12 @@ import { FloatingActionButton } from "../Components/FloatingActionButton";
 
 export function ChatsScreen() {
     return(
-        <View>
+        <View style={{flex: 1}}>
+            <ChatList />
             <FloatingActionButton 
                 icon={<MaterialIcons size={24} name="message" color="white" />}
                 color="#00A884"
             />
-            <ChatList />
         </View>
     );
 }
