@@ -1,4 +1,4 @@
-import { View } from "react-native";
+import { View, Text } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import { LoginScreen } from "../Screens/LoginScreen";
@@ -10,6 +10,7 @@ import { ProfileScreen } from "../Screens/ProfileScreen";
 import { UnimplementedScreen } from "../Screens/UnimplementedScreen";
 import { ChatScreen } from "../Screens/ChatScreen";
 import { ChatScreenTitle } from "../Components/ChatScreenTitle";
+import { ChatScreenHeaderRight } from "../Components/ChatScreenHeaderRight";
 
 const Stack = createNativeStackNavigator();
 
@@ -48,7 +49,8 @@ export function StackNavigator() {
                             headerBackground: () => <View style={{backgroundColor: C_TEAL, flex: 1}} />,
                             headerTintColor: "white",
                             title: "Haider",
-                            headerTitle: (props) => <ChatScreenTitle title={props.children} />
+                            headerTitle: (props) => <ChatScreenTitle title={props.children} />,
+                            headerRight: (props) => <ChatScreenHeaderRight />
                         }}
                     />
                     <Stack.Screen

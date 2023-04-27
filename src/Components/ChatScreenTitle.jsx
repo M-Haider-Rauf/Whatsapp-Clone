@@ -7,7 +7,7 @@ export function ChatScreenTitle(props) {
 
     return(
         <View style={styles.rootContainer}>
-            <Avatar size={38} />
+            <Avatar size={38} source=""/>
             <Text style={styles.text}>
             {title}
             </Text>

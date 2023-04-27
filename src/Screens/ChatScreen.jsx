@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 
-import { StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 
 import { ChatBackground } from "../Components/ChatBackground";
 import { MessageList } from "../Components/MessageList";
@@ -22,10 +22,14 @@ export function ChatScreen() {
             sent: Math.floor((Math.random() * 2.0))
         })
 
-        setMessages(messages => newMessages);
-        setMessage(message => "");
+        setMessages(newMessages);
+        setMessage("");
 
-        if (messages.length > 0) listRef.current.scrollToEnd();
+        if (messages.length > 0) {
+            setTimeout(() => {
+                listRef.current.scrollToEnd();
+            }, 20);
+        }
     }
 
     return(
@@ -43,7 +47,11 @@ export function ChatScreen() {
 
 const styles = StyleSheet.create({
     rootContainer: {
-        flex: 1,
         justifyContent: "center",
     },
+    encryptionContainer: {
+        color: "#FEEECC",
+        width: 70,
+        height: 70
+    }
 });
