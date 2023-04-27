@@ -32,7 +32,7 @@ export function StackNavigator() {
 
     return(
         <Stack.Navigator screenOptions={{headerShown: false}}>
-            {loggedIn ? 
+            { loggedIn ? 
                 <Stack.Group>
                     <Stack.Screen 
                         component={TabNavigator} 
