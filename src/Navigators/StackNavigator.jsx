@@ -11,11 +11,13 @@ import { UnimplementedScreen } from "../Screens/UnimplementedScreen";
 import { ChatScreen } from "../Screens/ChatScreen";
 import { ChatScreenTitle } from "../Components/ChatScreenTitle";
 import { ChatScreenHeaderRight } from "../Components/ChatScreenHeaderRight";
+import { store } from "../redux/store";
+import { useSelector } from "react-redux";
 
 const Stack = createNativeStackNavigator();
 
 export function StackNavigator() {
-    const loggedIn = true;
+    const loggedIn = useSelector(state => state.user.user) !== null;
 
     const options = {
         headerShown: true,

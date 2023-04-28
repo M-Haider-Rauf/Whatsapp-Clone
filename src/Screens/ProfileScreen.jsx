@@ -3,15 +3,19 @@ import { View, StyleSheet, TouchableOpacity } from "react-native";
 import { FontAwesome } from '@expo/vector-icons';
 
 import { Avatar } from "../Components/Avatar";
+import { useDispatch } from "react-redux";
 
 
 export function ProfileScreen(props) {
+    const dispatch = useDispatch();
+
+
     return(
         <View style={styles.rootContainer}>
             <Avatar source={null} size={150} />
             <TouchableOpacity 
                 style={styles.cameraContainer}
-                onPress={() => console.warn("pic change")}
+                onPress={() => dispatch({type: "user/logout"})}
             >
                 <FontAwesome name="camera" size={20} color="white" />
             </TouchableOpacity>

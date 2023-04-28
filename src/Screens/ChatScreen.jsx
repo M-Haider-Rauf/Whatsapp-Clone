@@ -10,25 +10,25 @@ export function ChatScreen() {
     const [messages, setMessages] = useState([]);
     const [message, setMessage] = useState("");
 
+    const trimmedMessage = message.trim();
+
     const listRef = useRef(null);
 
     const onSend = () => {
-        if (message.trim() === "") return;
+        if (trimmedMessage !== "") {
+            const newMessages = messages.slice();
+            newMessages.push({
+                text: trimmedMessage,
+                time: "12:00 AM",
+                sent: Math.floor((Math.random() * 2.0))
+            });
 
-        const newMessages = messages.slice();
-        newMessages.push({
-            text: message,
-            time: "12:00 AM",
-            sent: Math.floor((Math.random() * 2.0))
-        })
+            setMessages(newMessages);
+            setMessage("");
 
-        setMessages(newMessages);
-        setMessage("");
-
-        if (messages.length > 0) {
-            setTimeout(() => {
-                listRef.current.scrollToEnd();
-            }, 20);
+            if (messages.length > 0) {
+                listRef.current.scrollToIndex({index: messages.length - 1});
+            }
         }
     }
 
@@ -38,7 +38,7 @@ export function ChatScreen() {
             <MessageInput
                 onChangeText={(text) => setMessage(text)}
                 onSend={onSend}
-                voice={message.trim() === ""}
+                voice={trimmedMessage === ""}
                 message={message}
             />
         </ChatBackground>

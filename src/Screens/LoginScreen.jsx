@@ -8,6 +8,7 @@ import {
     } from "react-native";
 
 import { useNavigation } from "@react-navigation/native";
+import { useDispatch } from "react-redux";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import { Input } from '../Components/Input';
@@ -19,6 +20,7 @@ export function LoginScreen(props) {
     const [password, setPassword] = useState('');
 
     const navigation = useNavigation();
+    const dispatch = useDispatch();
 
     return (
         <View style={styles.rootContainer}>
@@ -29,15 +31,13 @@ export function LoginScreen(props) {
                     title="email"
                     onChange={setEmail}
                     keyboardType="email-address"
-                    //error='invalid'
                 />
                 <Input
                     icon={<MaterialCommunityIcons name='account-key' color='black' size={20} />}
                     title="password"
                     onChange={setPassword}
-                    //error='invalid'
                 />
-                <Button title="Login" onPress={() => navigation.navigate("Home")}/>
+                <Button title="Login" onPress={() => dispatch({type: "user/login", payload: {user: "123"}})}/>
                 <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
                     <Text style={{fontSize: 16}}>
                         Have no account? Sign Up!

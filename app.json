@@ -25,6 +25,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "d42b3b40-d269-4f8f-90f9-33cdaaab942c"
+      }
+    },
+    "owner": "haiderrauf"
   }
 }
