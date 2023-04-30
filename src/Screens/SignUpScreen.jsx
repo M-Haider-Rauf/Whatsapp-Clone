@@ -15,6 +15,7 @@ import { Header } from "../Components/Header";
 import { useNavigation } from "@react-navigation/native";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
+
 export function SignUpScreen(props) {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
