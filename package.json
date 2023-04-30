@@ -30,9 +30,5 @@
     "@babel/core": "^7.20.0",
     "babel-plugin-transform-remove-console": "^6.9.4"
   },
-  "private": false,
-  "description": "whatsclone",
-  "repository": "https://github.com/M-Haider-Rauf/Whatsapp-Clone",
-  "author": "M-Haider-Rauf <pfm251@gmail.com>",
-  "license": "MIT"
+  "private": true
 }
