@@ -13,7 +13,7 @@ export function Input(props) {
                 <TextInput
                     placeholder={props.title}
                     keyboardType={props.keyboardType}
-                    onChange={props.onChange}
+                    onChangeText={props.onChange}
                     style={styles.input}
                 />
             </View>

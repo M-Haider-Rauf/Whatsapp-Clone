@@ -1,15 +1,24 @@
 import { 
         TouchableOpacity, 
         StyleSheet, 
-        Text 
+        Text, 
+        ActivityIndicator
     } from "react-native";
     
 import C_TEAL from "../colors";
 
 export function Button(props) {
     return (
-        <TouchableOpacity style={styles.rootContainer} onPress={props.onPress}>
+        <TouchableOpacity 
+            style={styles.rootContainer} 
+            onPress={props.loading ? () => {} : props.onPress}
+        >
+        {
+            props.loading ?
+            <ActivityIndicator size="large" />
+            :
             <Text style={styles.text}>{props.title.toUpperCase()}</Text>
+        }
         </TouchableOpacity>
     );
 }

@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
-
 import { StyleSheet, View } from "react-native";
+
+import dayjs from "dayjs";
 
 import { ChatBackground } from "../Components/ChatBackground";
 import { MessageList } from "../Components/MessageList";
@@ -19,7 +20,7 @@ export function ChatScreen() {
             const newMessages = messages.slice();
             newMessages.push({
                 text: trimmedMessage,
-                time: "12:00 AM",
+                time: dayjs().format('h:mm A'),
                 sent: Math.floor((Math.random() * 2.0))
             });
 

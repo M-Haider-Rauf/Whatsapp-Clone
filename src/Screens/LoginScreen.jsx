@@ -37,7 +37,7 @@ export function LoginScreen(props) {
                     title="password"
                     onChange={setPassword}
                 />
-                <Button title="Login" onPress={() => dispatch({type: "user/login", payload: {user: "123"}})}/>
+                <Button title="Login" onPress={() => {}}/>
                 <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
                     <Text style={{fontSize: 16}}>
                         Have no account? Sign Up!
