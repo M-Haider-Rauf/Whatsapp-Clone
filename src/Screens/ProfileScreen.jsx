@@ -1,24 +1,32 @@
-import { View, StyleSheet, TouchableOpacity } from "react-native";
+import { View, StyleSheet, TouchableOpacity, Text } from "react-native";
 
+import { signOut } from "firebase/auth";
 import { FontAwesome } from '@expo/vector-icons';
+import { useDispatch, useSelector } from "react-redux";
 
 import { Avatar } from "../Components/Avatar";
-import { useDispatch } from "react-redux";
+import { auth } from "./../firebase";
+import { Button } from "../Components/Button";
 
 
 export function ProfileScreen(props) {
     const dispatch = useDispatch();
-
+    const about = useSelector(state => state.user.about);
 
     return(
         <View style={styles.rootContainer}>
-            <Avatar source={null} size={150} />
-            <TouchableOpacity 
-                style={styles.cameraContainer}
-                onPress={() => dispatch({type: "user/logout"})}
-            >
-                <FontAwesome name="camera" size={20} color="white" />
-            </TouchableOpacity>
+            <View style={styles.avatarContainer}>
+                <Avatar source={null} size={150} />
+                <TouchableOpacity 
+                    style={styles.cameraContainer}
+                    onPress={() => alert("Change PFP")}
+                >
+                    <FontAwesome name="camera" size={20} color="white" />
+                </TouchableOpacity>
+            </View>
+
+            <Text style={styles.aboutText}>{about}</Text>
+            <Button title="Logout" onPress={() => signOut(auth)}/>
         </View>
     );
 }
@@ -29,17 +37,13 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center"
     },
-    image: {
-        width: 120,
-        height: 120,
-        backgroundColor: "lightgray",
-        borderRadius: 100,
-        tintColor: "white"
+    avatarContainer: {
+
     },
     cameraContainer: {
         position: "absolute",
-        right: "29%",
-        top: "54%",
+        left: "29%",
+        top: "60%",
         zIndex: 10,
         backgroundColor: "teal",
         width: 45,
@@ -47,5 +51,8 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         borderRadius: 100
+    },
+    aboutText: {
+        marginTop: 10
     }
 });

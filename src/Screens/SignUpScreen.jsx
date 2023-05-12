@@ -15,18 +15,21 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 import { useNavigation } from "@react-navigation/native";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { useDispatch, useSelector } from "react-redux";
 
 export function SignUpScreen(props) {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [loading, setLoading] = useState(false);
+
+    const loading = useSelector(state => state.user.loading);
+    const dispatch = useDispatch();
 
     const navigation = useNavigation();
 
 
     const signUp = () => {
-        setLoading(true);
+        dispatch({type: "user/setLoading", payload: true});
 
         createUserWithEmailAndPassword(auth, email, password)
         .then(userCred => {
@@ -38,7 +41,6 @@ export function SignUpScreen(props) {
                 about: "Can't talk, WhatsClone only"
             });
         })
-        .finally(() => setLoading(false));
     }
 
     return (

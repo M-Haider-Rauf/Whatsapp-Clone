@@ -8,19 +8,30 @@ import {
     } from "react-native";
 
 import { useNavigation } from "@react-navigation/native";
-import { useDispatch } from "react-redux";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import { Input } from '../Components/Input';
 import { Button } from "../Components/Button";
 import { Header } from "../Components/Header";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../firebase";
+import { useDispatch, useSelector } from "react-redux";
 
 export function LoginScreen(props) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const navigation = useNavigation();
     const dispatch = useDispatch();
+    const loading = useSelector(state => state.user.loading);
+
+    const navigation = useNavigation();
+
+    const logIn = () => {
+        dispatch({type: "user/setLoading", payload: true});
+
+        signInWithEmailAndPassword(auth, email, password)
+        .catch((error) => alert(error.toString()))
+    }
 
     return (
         <View style={styles.rootContainer}>
@@ -37,7 +48,7 @@ export function LoginScreen(props) {
                     title="password"
                     onChange={setPassword}
                 />
-                <Button title="Login" onPress={() => {}}/>
+                <Button title="Login" onPress={logIn} loading={loading} />
                 <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
                     <Text style={{fontSize: 16}}>
                         Have no account? Sign Up!

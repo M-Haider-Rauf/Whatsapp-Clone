@@ -17,7 +17,7 @@ import { useSelector } from "react-redux";
 const Stack = createNativeStackNavigator();
 
 export function StackNavigator() {
-    const loggedIn = useSelector(state => state.user.user) !== null;
+    const loggedIn = useSelector(state => state.user.uid) !== null;
 
     const options = {
         headerShown: true,
