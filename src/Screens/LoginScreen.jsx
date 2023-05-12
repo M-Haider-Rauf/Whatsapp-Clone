@@ -1,5 +1,4 @@
 import { useState } from "react";
-
 import { 
         View, 
         StyleSheet, 
@@ -9,13 +8,14 @@ import {
 
 import { useNavigation } from "@react-navigation/native";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { useDispatch, useSelector } from "react-redux";
 
 import { Input } from '../Components/Input';
 import { Button } from "../Components/Button";
 import { Header } from "../Components/Header";
-import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase";
-import { useDispatch, useSelector } from "react-redux";
+
 
 export function LoginScreen(props) {
     const [email, setEmail] = useState('');

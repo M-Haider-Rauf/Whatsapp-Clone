@@ -2,12 +2,12 @@ import { useEffect } from "react";
 
 import { NavigationContainer } from "@react-navigation/native";
 import { onAuthStateChanged } from "firebase/auth";
+import { doc, getDoc } from "firebase/firestore";
 import { StackNavigator } from "./src/Navigators/StackNavigator";
 import { Provider } from "react-redux";
 
 import { store } from "./src/redux/store";
 import { auth, firestore } from './src/firebase';
-import { doc, getDoc } from "firebase/firestore";
 
 export default function App() {
   useEffect(() => {
@@ -19,10 +19,10 @@ export default function App() {
           const payload = {
             uid: user.uid,
             ...data
-          }
+          };
           store.dispatch({type: "user/login", payload: payload});
         })
-        .finally(() => {store.dispatch({type: "user/setLoading", payload: false});});
+        .finally(() => store.dispatch({type: "user/setLoading", payload: false}));
       }
       else {
         store.dispatch({type: "user/logout"});

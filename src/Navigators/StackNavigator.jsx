@@ -1,5 +1,7 @@
-import { View, Text } from "react-native";
+import { View } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+
+import { useSelector } from "react-redux";
 
 import { LoginScreen } from "../Screens/LoginScreen";
 import { SignUpScreen } from "../Screens/SignUpScreen";
@@ -12,7 +14,7 @@ import { ChatScreen } from "../Screens/ChatScreen";
 import { ChatScreenTitle } from "../Components/ChatScreenTitle";
 import { ChatScreenHeaderRight } from "../Components/ChatScreenHeaderRight";
 import { store } from "../redux/store";
-import { useSelector } from "react-redux";
+
 
 const Stack = createNativeStackNavigator();
 

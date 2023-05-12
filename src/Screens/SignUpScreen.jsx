@@ -6,16 +6,16 @@ import {
     TouchableOpacity
 } from "react-native";
 
-import { auth, firestore } from "../firebase";
-import { Input } from '../Components/Input';
-import { Button } from "../Components/Button";
-import { Header } from "../Components/Header";
-
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 import { useNavigation } from "@react-navigation/native";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { useDispatch, useSelector } from "react-redux";
+
+import { auth, firestore } from "../firebase";
+import { Input } from '../Components/Input';
+import { Button } from "../Components/Button";
+import { Header } from "../Components/Header";
 
 export function SignUpScreen(props) {
     const [name, setName] = useState('');

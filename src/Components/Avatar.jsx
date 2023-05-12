@@ -9,9 +9,9 @@ export function Avatar(props) {
 
     return(
         <Image 
-            source={props.source ? {uri: props.source} : require("../../assets/user.png") }
+            source={props.source ? { uri: props.source}  : require("../../assets/user.png")}
             style={[styles.image, additionalStyles]}
-         />
+        />
     );
 }
 
