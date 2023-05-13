@@ -4,7 +4,7 @@ export function Avatar(props) {
     const additionalStyles = {
         width: props.size,
         height: props.size,
-        tintColor: props.uri ?  undefined : "white"
+        tintColor: props.source ? undefined : "white"
     }
 
     return(

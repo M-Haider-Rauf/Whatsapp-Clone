@@ -30,7 +30,10 @@ export function LoginScreen(props) {
         dispatch({type: "user/setLoading", payload: true});
 
         signInWithEmailAndPassword(auth, email, password)
-        .catch((error) => alert(error.toString()))
+        .catch((error) => {
+            alert(error.toString());
+            dispatch({type: "user/setLoading", payload: false});
+        })
     }
 
     return (
@@ -47,6 +50,7 @@ export function LoginScreen(props) {
                     icon={<MaterialCommunityIcons name='account-key' color='black' size={20} />}
                     title="password"
                     onChange={setPassword}
+                    hidden
                 />
                 <Button title="Login" onPress={logIn} loading={loading} />
                 <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>

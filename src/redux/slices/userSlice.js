@@ -32,7 +32,10 @@ const userSlice = createSlice({
         },
         setLoading: (state, action) => {
             state.loading = action.payload;
-        } 
+        },
+        setAbout: (state, action) => {
+            state.about = action.payload;
+        }
     }
 });
 

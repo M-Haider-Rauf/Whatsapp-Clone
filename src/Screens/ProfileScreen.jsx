@@ -9,8 +9,11 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { Avatar } from "../Components/Avatar";
 import { auth, storage, firestore } from "./../firebase";
 import { Button } from "../Components/Button";
+import { doc, updateDoc } from "firebase/firestore";
+import { useState } from "react";
 
 export function ProfileScreen(props) {
+    const [visible, setVisible] = useState(false);
     const dispatch = useDispatch();
 
     const uid = useSelector(state => state.user.uid);
@@ -32,9 +35,13 @@ export function ProfileScreen(props) {
             return uploadBytes(path, blob);
         })
         .then(result => {
-            const url = getDownloadURL(result.ref);
-            dispatch({ type: "user/changePhoto", payload: url });
+            return getDownloadURL(result.ref);
         })
+        .then(url => {
+            updateDoc(doc(firestore, "users", uid), { photoURL: url })
+            .then(value => dispatch({ type: "user/changePhoto", payload: url }));
+        })
+        .catch(error => alert(error.toString()));
     }
 
     return(
@@ -49,7 +56,9 @@ export function ProfileScreen(props) {
                 </TouchableOpacity>
             </View>
 
-            <Text style={styles.aboutText}>{about}</Text>
+            <TouchableOpacity onPress={() => setVisible(true)}>
+                <Text style={styles.aboutText}>{about}</Text>
+            </TouchableOpacity>
             <Button title="Logout" onPress={() => signOut(auth)}/>
         </View>
     );
@@ -77,6 +86,10 @@ const styles = StyleSheet.create({
         borderRadius: 100
     },
     aboutText: {
-        marginTop: 10
+        marginTop: 10,
+        width: "80%",
+        textAlign: "center",
+        fontSize: 16,
+        fontFamily: "monospace"
     }
 });

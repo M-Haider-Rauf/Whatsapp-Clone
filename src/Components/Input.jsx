@@ -15,6 +15,7 @@ export function Input(props) {
                     keyboardType={props.keyboardType}
                     onChangeText={props.onChange}
                     style={styles.input}
+                    secureTextEntry={props.hidden}
                 />
             </View>
             <Text style={styles.error}>{props.error}</Text>
