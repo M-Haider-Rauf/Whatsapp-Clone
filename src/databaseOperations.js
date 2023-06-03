@@ -8,8 +8,9 @@ import {
         setDoc,
     } from "firebase/firestore";
 import { joinUIDs } from "./util";
-import { firestore } from "./firebase";
+import { firestore, storage } from "./firebase";
 import dayjs from "dayjs";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 
 export async function getUserFromDB(email) {
     const value = email.trim();
@@ -27,6 +28,19 @@ export async function getUserFromDB(email) {
                 data: doc.data()
             };
         }
+}
+
+export async function uploadToStorage(uri, folder, name)
+{
+        const path = ref(storage, `${folder}/${name}`);
+        
+        const body = await fetch(uri);
+        const blob = await body.blob();
+
+        const uploaded = await uploadBytes(path, blob);
+        const url = await getDownloadURL(uploaded.ref);
+
+        return url;
 }
 
 export async function sendMessageToDB(sender, receiver, message) {

@@ -3,7 +3,6 @@ import { View, StyleSheet, TouchableOpacity, Text } from "react-native";
 
 import { signOut } from "firebase/auth";
 import { doc, updateDoc } from "firebase/firestore";
-import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { useDispatch, useSelector } from "react-redux";
 import { FontAwesome } from '@expo/vector-icons';
 import { launchImageLibraryAsync, MediaTypeOptions } from "expo-image-picker";
@@ -11,10 +10,10 @@ import { launchImageLibraryAsync, MediaTypeOptions } from "expo-image-picker";
 import { Avatar } from "../Components/Avatar";
 import { auth, storage, firestore } from "./../firebase";
 import { Button } from "../Components/Button";
-
+import { uploadToStorage } from "../databaseOperations";
 
 export function ProfileScreen(props) {
-    const [visible, setVisible] = useState(false);
+    const [loading, setLoading] = useState(false);
     const dispatch = useDispatch();
 
     const user = useSelector(state => state.user);
@@ -24,28 +23,21 @@ export function ProfileScreen(props) {
     const about = user.about;
     const photoURL = user.photoURL;
 
-    const changePhoto = () => {
-        launchImageLibraryAsync({
+    const changePhoto = async () => {
+        const result = await launchImageLibraryAsync({
             aspect: [1, 1],
             allowsEditing: true,
             mediaTypes: MediaTypeOptions.Images
         })
-        .then(result => {
-            return fetch(result.assets[0].uri);
-        })
-        .then(body => body.blob())
-        .then(blob => {
-            const path = ref(storage, `pfps/${uid}`);
-            return uploadBytes(path, blob);
-        })
-        .then(result => {
-            return getDownloadURL(result.ref);
-        })
-        .then(url => {
-            updateDoc(doc(firestore, "users", uid), { photoURL: url })
-            .then(value => dispatch({ type: "user/changePhoto", payload: url }));
-        })
-        .catch(error => alert(error.toString()));
+        
+        setLoading(true);
+
+        const url = await uploadToStorage(result.assets[0].uri, "pfps", uid);
+
+        updateDoc(doc(firestore, "users", uid), { photoURL: url })
+        .then(value => dispatch({ type: "user/changePhoto", payload: url }));
+
+        setLoading(false)
     }
 
     return(
@@ -61,7 +53,7 @@ export function ProfileScreen(props) {
                 <Text style={styles.nameText}>{name}</Text>
             </View>
             
-            <TouchableOpacity onPress={() => setVisible(true)}>
+            <TouchableOpacity>
                 <Text style={styles.aboutText}>{about}</Text>
             </TouchableOpacity>
             <Button title="Logout" onPress={() => signOut(auth)}/>

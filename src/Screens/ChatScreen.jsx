@@ -31,6 +31,10 @@ export function ChatScreen() {
         return cleanup;
     }, [])
 
+    useEffect(() => {
+        
+    }, [])
+
     const trimmedMessage = message.trim();
 
     const listRef = useRef(null);

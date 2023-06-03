@@ -48,15 +48,22 @@ export function StackNavigator() {
                     <Stack.Screen 
                         component={ChatScreen}
                         name="ChatScreen"
-                        options={{
-                            statusBarColor: C_TEAL,
-                            headerShown: true,
-                            headerBackground: () => <View style={{backgroundColor: C_TEAL, flex: 1}} />,
-                            headerTintColor: "white",
-                            title: "Haider",
-                            headerTitle: (props) => <ChatScreenTitle title={props.children} />,
-                            headerRight: (props) => <ChatScreenHeaderRight />
-                        }}
+                        options={(args) => {
+                                const params = args.route.params;
+                                const name = params.name;
+                                const photoURL = params.photoURL;
+
+                                return {
+                                    statusBarColor: C_TEAL,
+                                    headerShown: true,
+                                    headerBackground: () => <View style={{backgroundColor: C_TEAL, flex: 1}} />,
+                                    headerTintColor: "white",
+                                    title: name,
+                                    headerTitle: (props) => <ChatScreenTitle title={props.children} photo={photoURL} />,
+                                    headerRight: (props) => <ChatScreenHeaderRight />
+                                };
+                            }
+                        }
                     />
                     <Stack.Screen
                          component={ProfileScreen} 

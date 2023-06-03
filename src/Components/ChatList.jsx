@@ -14,6 +14,7 @@ export function ChatList(props) {
                 name={item.name} 
                 lastMessage={item.lastMessage} 
                 time={dayjs.unix(item.time).format('h:mm A')} 
+                photo={item.photoURL}
                 onPress={() => navigation.navigate('ChatScreen', {
                     uid: item.uid,
                     roomID: item.roomID,

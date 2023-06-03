@@ -25,7 +25,8 @@ export function ChatsScreen() {
                 Object.values(data).forEach(value => {
                     newMessages.push(value);
                 })
-
+                
+                console.log(chats);
                 setChats(newMessages);
             }
         })

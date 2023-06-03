@@ -11,6 +11,8 @@ import { auth, firestore } from './src/firebase';
 
 export default function App() {
   useEffect(() => {
+    console.log("app started");
+
     const unsub = onAuthStateChanged(auth, (user) => {
       if (user) {
         getDoc(doc(firestore, "users", user.uid))
