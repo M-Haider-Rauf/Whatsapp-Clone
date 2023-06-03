@@ -22,11 +22,13 @@ export function ChatScreen() {
     const currentUser = useSelector(state => state.user);
 
     useEffect(() => {
-        onSnapshot(doc(firestore, "chatRooms", params.roomID), (snapshot) => {
+        const cleanup = onSnapshot(doc(firestore, "chatRooms", params.roomID), (snapshot) => {
             if (snapshot.exists()) {
                 setMessages(snapshot.data().messages);
             }
         })
+
+        return cleanup;
     }, [])
 
     const trimmedMessage = message.trim();
