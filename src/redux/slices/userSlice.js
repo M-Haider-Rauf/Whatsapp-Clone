@@ -5,6 +5,7 @@ const userSlice = createSlice({
 
     initialState: {
         uid: null,
+        email: "",
         name: '',
         photoURL: null,
         about: '',
@@ -16,12 +17,14 @@ const userSlice = createSlice({
             const payload = action.payload;
             
             state.uid = payload.uid;
+            state.email = payload.email;
             state.name = payload.name;
             state.photoURL = payload.photoURL;
             state.about = payload.about;
         },
         logout: state => {
             state.uid = null;
+            state.email = "";
             state.name = '';
             state.photoURL = null;
             state.about = '';
@@ -30,9 +33,8 @@ const userSlice = createSlice({
             const payload = action.payload;
             state.photoURL = payload;
         },
-        setLoading: (state, action) => {
-            state.loading = action.payload;
-        },
+        loading: state => {state.loading = true},
+        loaded: state => {state.loading = false},
         setAbout: (state, action) => {
             state.about = action.payload;
         }

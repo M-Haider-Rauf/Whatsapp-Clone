@@ -2,7 +2,10 @@ import { StyleSheet, TouchableOpacity } from "react-native";
 
 export function FloatingActionButton(props) {
     return(
-        <TouchableOpacity style={[styles.rootContainer, {backgroundColor: props.color}]}>
+        <TouchableOpacity 
+            style={[styles.rootContainer, {backgroundColor: props.color}]}
+            onPress={props.onPress}
+        >
             {props.icon}
         </TouchableOpacity>
     )

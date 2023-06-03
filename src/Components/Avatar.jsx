@@ -8,7 +8,7 @@ export function Avatar(props) {
     }
 
     return(
-        <Image 
+        <Image
             source={props.source ? { uri: props.source}  : require("../../assets/user.png")}
             style={[styles.image, additionalStyles]}
         />

@@ -4,6 +4,9 @@ import { View, FlatList, StyleSheet, Text } from "react-native";
 
 import { Message } from "./Message";
 
+import dayjs from "dayjs";
+import { useSelector } from "react-redux";
+
 const EncryptionText = () => {
     return (
         <View style={styles.encryptionContainer}>
@@ -17,12 +20,15 @@ const EncryptionText = () => {
 }
 
 const MessageList = forwardRef((props, ref) => {
+    const currentUserUID = useSelector(state => state.user.uid);
+
+
     const renderItem = ({item}) => {
         return(
             <Message
                 text={item.text} 
-                sent={item.sent}
-                time={item.time} 
+                sent={item.sender === currentUserUID}
+                time={dayjs.unix(item.time).format('h:mm A')} 
             />
         );
     }
@@ -37,7 +43,7 @@ const MessageList = forwardRef((props, ref) => {
                 style={{width: "100%"}}
                 data={data}
                 renderItem={renderItem}
-                keyExtractor={(item, index) => `${item.text}${index}`}
+                keyExtractor={(item, index) => `${item.time}${index}`}
                 ref={ref}
             />
         </View>

@@ -3,8 +3,9 @@ import { StyleSheet, FlatList } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 import { ChatListItem } from "./ChatListItem";
+import dayjs from "dayjs";
 
-export function ChatList() {
+export function ChatList(props) {
     const navigation = useNavigation();
 
     const renderItem = ({item}) => {
@@ -12,25 +13,26 @@ export function ChatList() {
             <ChatListItem
                 name={item.name} 
                 lastMessage={item.lastMessage} 
-                time={item.time} 
-                onPress={() => navigation.navigate('ChatScreen')}
+                time={dayjs.unix(item.time).format('h:mm A')} 
+                onPress={() => navigation.navigate('ChatScreen', {
+                    uid: item.uid,
+                    roomID: item.roomID,
+                    name: item.name,
+                    photoURL: item.photoURL
+                })}
             />
         );
     }
 
-    const data = Array(10).fill({
-            name: "User 0", 
-            lastMessage: "Last sent. Last sent. Last sent. Last sent.", 
-            time: "10:00 AM"
-    });
+    const data = props.chats;
 
 
     return(
-            <FlatList 
-                data={data}
-                renderItem={renderItem}
-                keyExtractor={(item, index) => index}
-            />
+        <FlatList 
+            data={data}
+            renderItem={renderItem}
+            keyExtractor={item => item.uid}
+        />
     ); 
 }
 

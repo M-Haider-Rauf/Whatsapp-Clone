@@ -7,13 +7,14 @@ import { LoginScreen } from "../Screens/LoginScreen";
 import { SignUpScreen } from "../Screens/SignUpScreen";
 import { HeaderRight } from "../Components/HeaderRight";
 import { TabNavigator } from "./TabNavigator";
-import C_TEAL from "../colors";
 import { ProfileScreen } from "../Screens/ProfileScreen";
 import { UnimplementedScreen } from "../Screens/UnimplementedScreen";
 import { ChatScreen } from "../Screens/ChatScreen";
+import { ContactsScreen } from "../Screens/ContactsScreen";
+
+import C_TEAL from "../colors";
 import { ChatScreenTitle } from "../Components/ChatScreenTitle";
 import { ChatScreenHeaderRight } from "../Components/ChatScreenHeaderRight";
-import { store } from "../redux/store";
 
 
 const Stack = createNativeStackNavigator();
@@ -66,6 +67,10 @@ export function StackNavigator() {
                             headerBackground: () => <View style={{backgroundColor: C_TEAL, flex: 1}} />,
                             headerTintColor: "white"
                         }}
+                    />
+                    <Stack.Screen 
+                        component={ ContactsScreen }
+                        name="Contacts"
                     />
                 </Stack.Group>
                 :

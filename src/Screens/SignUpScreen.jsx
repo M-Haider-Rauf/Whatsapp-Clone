@@ -29,7 +29,7 @@ export function SignUpScreen(props) {
 
 
     const signUp = () => {
-        dispatch({type: "user/setLoading", payload: true});
+        dispatch({type: "user/loading"});
 
         createUserWithEmailAndPassword(auth, email, password)
         .then(userCred => {
@@ -37,10 +37,12 @@ export function SignUpScreen(props) {
 
             return setDoc(doc(firestore, "users", uid), {
                 name: name,
+                email,
                 photoURL: null,
-                about: "Can't talk, WhatsClone only"
+                about: "Can't talk, WhatsClone only",
             });
         })
+        .catch(reason => dispatch({type: "user/loaded"}));
     }
 
     return (

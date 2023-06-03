@@ -1,24 +1,28 @@
+import { useState } from "react";
 import { View, StyleSheet, TouchableOpacity, Text } from "react-native";
 
 import { signOut } from "firebase/auth";
-import { FontAwesome } from '@expo/vector-icons';
-import { useDispatch, useSelector } from "react-redux";
-import { launchImageLibraryAsync, MediaTypeOptions } from "expo-image-picker";
+import { doc, updateDoc } from "firebase/firestore";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { useDispatch, useSelector } from "react-redux";
+import { FontAwesome } from '@expo/vector-icons';
+import { launchImageLibraryAsync, MediaTypeOptions } from "expo-image-picker";
 
 import { Avatar } from "../Components/Avatar";
 import { auth, storage, firestore } from "./../firebase";
 import { Button } from "../Components/Button";
-import { doc, updateDoc } from "firebase/firestore";
-import { useState } from "react";
+
 
 export function ProfileScreen(props) {
     const [visible, setVisible] = useState(false);
     const dispatch = useDispatch();
 
-    const uid = useSelector(state => state.user.uid);
-    const about = useSelector(state => state.user.about);
-    const photoURL = useSelector(state => state.user.photoURL);
+    const user = useSelector(state => state.user);
+    
+    const uid = user.uid;
+    const name = user.name;
+    const about = user.about;
+    const photoURL = user.photoURL;
 
     const changePhoto = () => {
         launchImageLibraryAsync({
@@ -54,8 +58,9 @@ export function ProfileScreen(props) {
                 >
                     <FontAwesome name="camera" size={20} color="white" />
                 </TouchableOpacity>
+                <Text style={styles.nameText}>{name}</Text>
             </View>
-
+            
             <TouchableOpacity onPress={() => setVisible(true)}>
                 <Text style={styles.aboutText}>{about}</Text>
             </TouchableOpacity>
@@ -68,7 +73,7 @@ const styles = StyleSheet.create({
     rootContainer: {
         flex: 1,
         justifyContent: "space-evenly",
-        alignItems: "center"
+        alignItems: "center",
     },
     avatarContainer: {
 
@@ -85,11 +90,16 @@ const styles = StyleSheet.create({
         alignItems: "center",
         borderRadius: 100
     },
+    nameText: {
+        marginTop: 20,
+        fontWeight: "bold",
+        fontSize: 20,
+        textAlign: "center"
+    },
     aboutText: {
-        marginTop: 10,
         width: "80%",
         textAlign: "center",
         fontSize: 16,
-        fontFamily: "monospace"
+        fontStyle: "italic"
     }
 });

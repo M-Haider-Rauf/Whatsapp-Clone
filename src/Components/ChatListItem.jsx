@@ -5,6 +5,7 @@ import {
         TouchableOpacity 
     } from "react-native";
     
+import dayjs from "dayjs";
 import { Avatar } from "./Avatar";
 
 export function ChatListItem(props) {

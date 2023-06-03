@@ -22,7 +22,7 @@ export default function App() {
           };
           store.dispatch({type: "user/login", payload: payload});
         })
-        .finally(() => store.dispatch({type: "user/setLoading", payload: false}));
+        .finally(() => store.dispatch({type: "user/loaded"}));
       }
       else {
         store.dispatch({type: "user/logout"});

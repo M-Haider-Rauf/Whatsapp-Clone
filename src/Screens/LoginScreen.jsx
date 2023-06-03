@@ -27,12 +27,12 @@ export function LoginScreen(props) {
     const navigation = useNavigation();
 
     const logIn = () => {
-        dispatch({type: "user/setLoading", payload: true});
+        dispatch({type: "user/loading"});
 
         signInWithEmailAndPassword(auth, email, password)
         .catch((error) => {
             alert(error.toString());
-            dispatch({type: "user/setLoading", payload: false});
+            dispatch({type: "user/loaded"});
         })
     }
 

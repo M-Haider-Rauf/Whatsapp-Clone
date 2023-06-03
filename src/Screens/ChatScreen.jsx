@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { StyleSheet, View } from "react-native";
 
 import dayjs from "dayjs";
@@ -6,10 +6,28 @@ import dayjs from "dayjs";
 import { ChatBackground } from "../Components/ChatBackground";
 import { MessageList } from "../Components/MessageList";
 import { MessageInput } from "../Components/MessageInput";
+import { useSelector } from "react-redux";
+import { firestore } from "../firebase";
+import { useRoute } from "@react-navigation/native";
+
+import { query, doc ,orderBy, onSnapshot } from "firebase/firestore";
+import { sendMessageToDB } from "../databaseOperations";
 
 export function ChatScreen() {
     const [messages, setMessages] = useState([]);
     const [message, setMessage] = useState("");
+
+    const route = useRoute();
+    const params = route.params;
+    const currentUser = useSelector(state => state.user);
+
+    useEffect(() => {
+        onSnapshot(doc(firestore, "chatRooms", params.roomID), (snapshot) => {
+            if (snapshot.exists()) {
+                setMessages(snapshot.data().messages);
+            }
+        })
+    }, [])
 
     const trimmedMessage = message.trim();
 
@@ -17,14 +35,8 @@ export function ChatScreen() {
 
     const onSend = () => {
         if (trimmedMessage !== "") {
-            const newMessages = messages.slice();
-            newMessages.push({
-                text: trimmedMessage,
-                time: dayjs().format('h:mm A'),
-                sent: Math.floor((Math.random() * 2.0))
-            });
+            sendMessageToDB(currentUser, {...params}, message);
 
-            setMessages(newMessages);
             setMessage("");
 
             if (messages.length > 0) {
