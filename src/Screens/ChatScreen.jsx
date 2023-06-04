@@ -17,6 +17,8 @@ export function ChatScreen() {
     const [messages, setMessages] = useState([]);
     const [message, setMessage] = useState("");
 
+    const listRef = useRef(null);
+
     const route = useRoute();
     const params = route.params;
     const currentUser = useSelector(state => state.user);
@@ -29,25 +31,22 @@ export function ChatScreen() {
         })
 
         return cleanup;
-    }, [])
+    }, []);
 
     useEffect(() => {
-        
-    }, [])
+        console.log(messages.length);
+
+        if (messages.length > 0)
+        listRef.current.scrollToEnd();
+    }, [messages]);
 
     const trimmedMessage = message.trim();
+    
 
-    const listRef = useRef(null);
-
-    const onSend = () => {
+    const onSend = async () => {
         if (trimmedMessage !== "") {
-            sendMessageToDB(currentUser, {...params}, message);
-
+            await sendMessageToDB(currentUser, {...params}, message);
             setMessage("");
-
-            if (messages.length > 0) {
-                listRef.current.scrollToIndex({index: messages.length - 1});
-            }
         }
     }
 

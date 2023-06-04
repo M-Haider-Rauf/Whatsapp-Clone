@@ -1,4 +1,4 @@
-import { forwardRef } from "react";
+import { forwardRef, useEffect } from "react";
 
 import { View, FlatList, StyleSheet, Text } from "react-native";
 
@@ -22,7 +22,6 @@ const EncryptionText = () => {
 const MessageList = forwardRef((props, ref) => {
     const currentUserUID = useSelector(state => state.user.uid);
 
-
     const renderItem = ({item}) => {
         return(
             <Message
@@ -37,7 +36,6 @@ const MessageList = forwardRef((props, ref) => {
 
     return(
         <View style={styles.rootContainer}>
-            
             <FlatList
                 ListHeaderComponent={<EncryptionText />}
                 style={{width: "100%"}}

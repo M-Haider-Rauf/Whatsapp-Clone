@@ -26,8 +26,7 @@ export function ChatsScreen() {
                     newMessages.push(value);
                 })
                 
-                console.log(chats);
-                setChats(newMessages);
+                setChats(newMessages.sort((m1, m2) => (m2.time - m1.time)));
             }
         })
 

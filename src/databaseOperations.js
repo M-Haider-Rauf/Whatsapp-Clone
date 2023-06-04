@@ -60,17 +60,17 @@ export async function sendMessageToDB(sender, receiver, message) {
         })
     }, { merge: true });
 
-    await setDoc(doc(firestore, "chats", senderUID),{ 
+    await setDoc(doc(firestore, "chats", senderUID), { 
         [roomID]: {
             roomID: roomID,
             uid: receiverUID,
             name: receiver.name,
             photoURL: receiver.photoURL,
             lastMessage: message,
-            time: unix
+            time: unix,
     }}, { merge: true });
 
-    await setDoc(doc(firestore, "chats", receiverUID),{ 
+    await setDoc(doc(firestore, "chats", receiverUID), { 
         [roomID]: {
             roomID: roomID,
             uid: senderUID,
