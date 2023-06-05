@@ -6,12 +6,18 @@ import {
         where, 
         getDocs,
         setDoc,
-    } from "firebase/firestore";
-import { joinUIDs } from "./util";
-import { firestore, storage } from "./firebase";
-import dayjs from "dayjs";
+} from "firebase/firestore";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 
+import dayjs from "dayjs";
+
+import { joinUIDs } from "./util";
+import { firestore, storage } from "./firebase";
+
+/*
+    This function gets a user with specified email from firestore.
+    It returns the data if it exists, or null otherwise.
+*/
 export async function getUserFromDB(email) {
     const value = email.trim();
 
@@ -30,6 +36,12 @@ export async function getUserFromDB(email) {
         }
 }
 
+/*
+    This functiom uploads a file to storage, given it's URI.
+    @uri uri of given file.
+    @folder the folder
+    @name the name of file in storage
+*/
 export async function uploadToStorage(uri, folder, name)
 {
         const path = ref(storage, `${folder}/${name}`);
@@ -43,6 +55,12 @@ export async function uploadToStorage(uri, folder, name)
         return url;
 }
 
+/*
+    This function sends a message to the firestore.
+    @sender sender uid
+    @reciever receiver uid
+    @message text
+*/
 export async function sendMessageToDB(sender, receiver, message) {
     const senderUID = sender.uid;
     const receiverUID = receiver.uid;

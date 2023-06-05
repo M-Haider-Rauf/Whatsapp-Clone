@@ -1,11 +1,10 @@
-import { forwardRef, useEffect } from "react";
-
+import { forwardRef } from "react";
 import { View, FlatList, StyleSheet, Text } from "react-native";
 
-import { Message } from "./Message";
-
-import dayjs from "dayjs";
 import { useSelector } from "react-redux";
+import dayjs from "dayjs";
+
+import { Message } from "./Message";
 
 const EncryptionText = () => {
     return (

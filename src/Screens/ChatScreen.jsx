@@ -1,17 +1,16 @@
 import { useState, useRef, useEffect } from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet } from "react-native";
 
-import dayjs from "dayjs";
 
+import { useSelector } from "react-redux";
+import { useRoute } from "@react-navigation/native";
+import { doc, onSnapshot } from "firebase/firestore";
+
+import { firestore } from "../firebase";
+import { sendMessageToDB } from "../databaseOperations";
 import { ChatBackground } from "../Components/ChatBackground";
 import { MessageList } from "../Components/MessageList";
 import { MessageInput } from "../Components/MessageInput";
-import { useSelector } from "react-redux";
-import { firestore } from "../firebase";
-import { useRoute } from "@react-navigation/native";
-
-import { query, doc ,orderBy, onSnapshot } from "firebase/firestore";
-import { sendMessageToDB } from "../databaseOperations";
 
 export function ChatScreen() {
     const [messages, setMessages] = useState([]);
@@ -36,8 +35,9 @@ export function ChatScreen() {
     useEffect(() => {
         console.log(messages.length);
 
-        if (messages.length > 0)
-        listRef.current.scrollToEnd();
+        if (messages.length > 0) {
+            listRef.current.scrollToEnd();
+        }
     }, [messages]);
 
     const trimmedMessage = message.trim();

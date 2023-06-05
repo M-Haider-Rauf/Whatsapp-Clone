@@ -7,10 +7,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { FontAwesome } from '@expo/vector-icons';
 import { launchImageLibraryAsync, MediaTypeOptions } from "expo-image-picker";
 
+import { uploadToStorage } from "../databaseOperations";
 import { Avatar } from "../Components/Avatar";
 import { auth, storage, firestore } from "./../firebase";
 import { Button } from "../Components/Button";
-import { uploadToStorage } from "../databaseOperations";
 
 export function ProfileScreen(props) {
     const [loading, setLoading] = useState(false);

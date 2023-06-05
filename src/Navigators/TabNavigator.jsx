@@ -2,7 +2,6 @@ import { createMaterialTopTabNavigator } from "@react-navigation/material-top-ta
 
 import { ChatsScreen } from "../Screens/ChatsScreen";
 import { UnimplementedScreen } from "../Screens/UnimplementedScreen";
-
 import C_TEAL from "../colors";
 
 const Tab = createMaterialTopTabNavigator();

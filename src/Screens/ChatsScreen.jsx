@@ -1,14 +1,14 @@
+import { useEffect, useState } from "react";
 import { View } from "react-native";
 
+import { useNavigation } from "@react-navigation/native";
+import { useSelector } from "react-redux";
 import { MaterialIcons } from "@expo/vector-icons";
+import { doc, onSnapshot } from "firebase/firestore";
 
+import { firestore } from "../firebase";
 import { ChatList } from "../Components/ChatList";
 import { FloatingActionButton } from "../Components/FloatingActionButton";
-import { useNavigation } from "@react-navigation/native";
-import { useEffect, useState } from "react";
-import { doc, onSnapshot } from "firebase/firestore";
-import { firestore } from "../firebase";
-import { useSelector } from "react-redux";
 
 export function ChatsScreen() {
     const [chats, setChats] = useState([]);

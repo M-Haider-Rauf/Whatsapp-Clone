@@ -2,7 +2,7 @@ import { View, Text, StyleSheet } from "react-native";
 
 import { MaterialIcons } from '@expo/vector-icons';
 
-export function UnimplementedScreen(props) {
+export function UnimplementedScreen() {
     return (
         <View style={styles.rootContainer}>
             <MaterialIcons name="construction" size={140} color="black" />

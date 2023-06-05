@@ -1,9 +1,9 @@
 import { StyleSheet, FlatList } from "react-native";
 
 import { useNavigation } from "@react-navigation/native";
+import dayjs from "dayjs";
 
 import { ChatListItem } from "./ChatListItem";
-import dayjs from "dayjs";
 
 export function ChatList(props) {
     const navigation = useNavigation();

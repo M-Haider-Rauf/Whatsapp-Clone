@@ -1,6 +1,6 @@
 import { View } from "react-native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { useSelector } from "react-redux";
 
 import { LoginScreen } from "../Screens/LoginScreen";
@@ -11,11 +11,9 @@ import { ProfileScreen } from "../Screens/ProfileScreen";
 import { UnimplementedScreen } from "../Screens/UnimplementedScreen";
 import { ChatScreen } from "../Screens/ChatScreen";
 import { ContactsScreen } from "../Screens/ContactsScreen";
-
-import C_TEAL from "../colors";
 import { ChatScreenTitle } from "../Components/ChatScreenTitle";
 import { ChatScreenHeaderRight } from "../Components/ChatScreenHeaderRight";
-
+import C_TEAL from "../colors";
 
 const Stack = createNativeStackNavigator();
 

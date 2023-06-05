@@ -7,14 +7,14 @@ import {
     } from "react-native";
 
 import { useNavigation } from "@react-navigation/native";
+import { useDispatch, useSelector } from "react-redux";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { useDispatch, useSelector } from "react-redux";
 
+import { auth } from "../firebase";
 import { Input } from '../Components/Input';
 import { Button } from "../Components/Button";
 import { Header } from "../Components/Header";
-import { auth } from "../firebase";
 
 
 export function LoginScreen(props) {

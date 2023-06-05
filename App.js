@@ -3,9 +3,9 @@ import { useEffect } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { onAuthStateChanged } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
-import { StackNavigator } from "./src/Navigators/StackNavigator";
 import { Provider } from "react-redux";
 
+import { StackNavigator } from "./src/Navigators/StackNavigator";
 import { store } from "./src/redux/store";
 import { auth, firestore } from './src/firebase';
 

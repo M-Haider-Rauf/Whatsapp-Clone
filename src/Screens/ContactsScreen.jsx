@@ -1,12 +1,14 @@
-import { arrayUnion, doc, setDoc } from "firebase/firestore";
+
 import { useState } from "react";
 import { View, TextInput, Button, StyleSheet, Text } from "react-native";
-import { firestore } from "../firebase";
+
 import { useSelector } from "react-redux";
-import { joinUIDs } from "../util";
-import { getUserFromDB } from "../databaseOperations";
+import { doc, setDoc } from "firebase/firestore";
 import dayjs from "dayjs";
 
+import { firestore } from "../firebase";
+import { getUserFromDB } from "../databaseOperations";
+import { joinUIDs } from "../util";
 
 export function ContactsScreen (props) {
     const [email, setEmail] = useState("");
