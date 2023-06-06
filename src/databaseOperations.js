@@ -70,7 +70,7 @@ export async function sendMessageToDB(sender, receiver, message) {
 
     const chatRoomRef = doc(firestore, "chatRooms", roomID);
     
-    setDoc(doc(firestore, "chatRooms", roomID), {
+    await setDoc(doc(firestore, "chatRooms", roomID), {
         messages: arrayUnion({
             sender: senderUID,
             text: message,
