@@ -25,7 +25,7 @@ export function ChatScreen() {
     useEffect(() => {
         const cleanup = onSnapshot(doc(firestore, "chatRooms", params.roomID), (snapshot) => {
             if (snapshot.exists()) {
-                setMessages(snapshot.data().messages);
+                setMessages(snapshot.data().messages.reverse());
             }
         })
 
@@ -33,10 +33,8 @@ export function ChatScreen() {
     }, []);
 
     useEffect(() => {
-        console.log(messages.length);
-
         if (messages.length > 0) {
-            listRef.current.scrollToEnd();
+            listRef.current.scrollToIndex({index: 0});
         }
     }, [messages]);
 
@@ -45,8 +43,8 @@ export function ChatScreen() {
 
     const onSend = async () => {
         if (trimmedMessage !== "") {
-            await sendMessageToDB(currentUser, {...params}, message);
             setMessage("");
+            await sendMessageToDB(currentUser, {...params}, message);
         }
     }
 

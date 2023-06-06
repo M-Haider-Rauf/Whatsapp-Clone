@@ -86,6 +86,7 @@ export async function sendMessageToDB(sender, receiver, message) {
             photoURL: receiver.photoURL,
             lastMessage: message,
             time: unix,
+            read: false
     }}, { merge: true });
 
     await setDoc(doc(firestore, "chats", receiverUID), { 
@@ -95,6 +96,7 @@ export async function sendMessageToDB(sender, receiver, message) {
             name: sender.name,
             photoURL: sender.photoURL,
             lastMessage: message,
-            time: unix
+            time: unix,
+            read: false
     }}, { merge: true });
 }

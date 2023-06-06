@@ -29,8 +29,7 @@
     "react-redux": "^8.0.5"
   },
   "devDependencies": {
-    "@babel/core": "^7.20.0",
-    "babel-plugin-transform-remove-console": "^6.9.4"
+    "@babel/core": "^7.20.0"
   },
   "private": true
 }

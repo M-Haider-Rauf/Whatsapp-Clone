@@ -36,12 +36,12 @@ const MessageList = forwardRef((props, ref) => {
     return(
         <View style={styles.rootContainer}>
             <FlatList
-                ListHeaderComponent={<EncryptionText />}
                 style={{width: "100%"}}
                 data={data}
                 renderItem={renderItem}
                 keyExtractor={(item, index) => `${item.time}${index}`}
                 ref={ref}
+                inverted={true}
             />
         </View>
     );

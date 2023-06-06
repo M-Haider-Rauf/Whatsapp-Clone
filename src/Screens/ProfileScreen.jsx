@@ -29,6 +29,8 @@ export function ProfileScreen(props) {
             allowsEditing: true,
             mediaTypes: MediaTypeOptions.Images
         })
+
+        if (result.canceled) return;
         
         setLoading(true);
 
